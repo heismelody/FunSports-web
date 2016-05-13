@@ -269,3 +269,37 @@ if (typeof NProgress != 'undefined') {
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
+
+$(document).ready(function () {
+    $('#reg-em-ip').tooltip();
+    $("#log-usr-ip").tooltip();
+    var valemail = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
+    
+    $("#reg-em-ip").bind('input propertychange mouseover click mousedown', function() {
+        var email = $("#reg-em-ip").val();
+
+        if(valemail.test(email)){
+            $("#reg-em-ip").tooltip('hide');
+        }
+    });
+
+    $("#log-usr-ip").bind('input propertychange mouseover click mousedown', function() {
+        var user = $("#log-usr-ip").val();
+
+        if(user != '' ){
+            $("#log-usr-ip").tooltip('hide');
+        }
+    });
+
+    $("#registerbtn").click(function () {
+        if(email == '' ){
+
+        }
+        if(password.val() == ''){
+
+        }
+        if(pwaccount.val() == ''){
+
+        }
+    })
+});
