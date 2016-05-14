@@ -270,28 +270,44 @@ if (typeof NProgress != 'undefined') {
 
 })(jQuery,'smartresize');
 
+//singin page custom js
+$(document).ready(function () {
+    $("#log-usr-ip").tooltip();
+
+    $("#log-usr-ip").bind('input propertychange mouseover click mousedown focus', function() {
+        var user = $("#log-usr-ip").val();
+
+        if(user != ''){
+            $("#log-usr-ip").tooltip('hide');
+        }
+    });
+});
+
+//reigster page custom js
 $(document).ready(function () {
     $('#reg-em-ip').tooltip();
-    $("#log-usr-ip").tooltip();
     var valemail = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
-    
-    $("#reg-em-ip").bind('input propertychange mouseover click mousedown', function() {
+
+    $("#reg-em-ip").bind('input propertychange mouseover click mousedown focus', function() {
         var email = $("#reg-em-ip").val();
 
         if(valemail.test(email)){
             $("#reg-em-ip").tooltip('hide');
         }
     });
-
-    $("#log-usr-ip").bind('input propertychange mouseover click mousedown', function() {
-        var user = $("#log-usr-ip").val();
-
-        if(user != '' ){
-            $("#log-usr-ip").tooltip('hide');
-        }
-    });
+    $("#signbtn").click(function () {
+        $('#log-alert').append('<div class="alert alert-warning alert-dismissible" role="alert">'
+            +'    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+            +'<strong>Warning!</strong>'
+            +'</div>')
+    })
 
     $("#registerbtn").click(function () {
+        $('#reg-alert').append('<div class="alert alert-warning alert-dismissible" role="alert">'
+        +'    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+        +'<strong>Warning!</strong>'
+        +'</div>')
+
         if(email == '' ){
 
         }
