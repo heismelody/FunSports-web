@@ -270,10 +270,11 @@ if (typeof NProgress != 'undefined') {
 
 })(jQuery,'smartresize');
 
-//singin page custom js
+//signin page custom js
 $(document).ready(function () {
-    $("#log-usr-ip").tooltip();
 
+    //username input tooltip
+    $("#log-usr-ip").tooltip();
     $("#log-usr-ip").bind('input propertychange mouseover click mousedown focus', function() {
         var user = $("#log-usr-ip").val();
 
@@ -281,13 +282,53 @@ $(document).ready(function () {
             $("#log-usr-ip").tooltip('hide');
         }
     });
+
+    //signin button validation check
+    $("#signbtn").click(function () {
+        if($('#log-usr-ip').val() == '') {
+            $('#log-usr-ip').focus();
+            if ($('#log-alert div').get(0) == undefined) {
+                $('#log-alert').append(''
+                    + '<div class="alert alert-warning alert-dismissible" role="alert">'
+                    + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                    + '    <span aria-hidden="true">&times;</span>'
+                    + '   </button>'
+                    + '  <strong>Please enter name!</strong>'
+                    + '</div>')
+            }
+            else {
+                $('#log-alert div strong').text("Please enter name!");
+            }
+        }
+        else if($('#log-usr-ip').val() != ''){
+            if($('#log-pw-ip').val() == ''){
+                $('#log-pw-ip').focus();
+                if ($('#log-alert div').get(0) == undefined) {
+                    $('#log-alert').append(''
+                        + '<div class="alert alert-warning alert-dismissible" role="alert">'
+                        + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                        + '    <span aria-hidden="true">&times;</span>'
+                        + '   </button>'
+                        + '  <strong>Please enter pw!</strong>'
+                        + '</div>')
+                }
+                else {
+                    $('#log-alert div strong').text("Please enter pw!");}
+            }
+            else if ($('#log-alert div').get(0) != undefined){
+                $('#log-alert div').remove('div');
+            }
+        }
+    })
+
 });
 
 //reigster page custom js
 $(document).ready(function () {
+
+    //register email tooltip
     $('#reg-em-ip').tooltip();
     var valemail = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
-
     $("#reg-em-ip").bind('input propertychange mouseover click mousedown focus', function() {
         var email = $("#reg-em-ip").val();
 
@@ -295,27 +336,82 @@ $(document).ready(function () {
             $("#reg-em-ip").tooltip('hide');
         }
     });
-    $("#signbtn").click(function () {
-        $('#log-alert').append('<div class="alert alert-warning alert-dismissible" role="alert">'
-            +'    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-            +'<strong>Warning!</strong>'
-            +'</div>')
-    })
 
+    //register button validation check
     $("#registerbtn").click(function () {
-        $('#reg-alert').append('<div class="alert alert-warning alert-dismissible" role="alert">'
-        +'    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-        +'<strong>Warning!</strong>'
-        +'</div>')
-
-        if(email == '' ){
-
+        if($('#reg-em-ip').val() == '') {
+            $('#reg-em-ip').focus();
+            if ($('#reg-alert div').get(0) == undefined) {
+                $('#reg-alert').append(''
+                    + '<div class="alert alert-warning alert-dismissible" role="alert">'
+                    + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                    + '    <span aria-hidden="true">&times;</span>'
+                    + '   </button>'
+                    + '  <strong>Please enter email!</strong>'
+                    + '</div>')
+            }
+            else {
+                $('#reg-alert div strong').text("Please enter name!");
+            }
         }
-        if(password.val() == ''){
-
-        }
-        if(pwaccount.val() == ''){
-
+        else if($('#reg-em-ip').val() != ''){
+            if($('#reg-pw-ip').val() == ''){
+                $('#reg-pw-ip').focus();
+                if ($('#reg-alert div').get(0) == undefined) {
+                    $('#reg-alert').append(''
+                        + '<div class="alert alert-warning alert-dismissible" role="alert">'
+                        + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                        + '    <span aria-hidden="true">&times;</span>'
+                        + '   </button>'
+                        + '  <strong>Please enter pw!</strong>'
+                        + '</div>')
+                }
+                else {
+                    $('#reg-alert div strong').text("Please enter pw!");}
+            }
+            else if($('#reg-pw-ip').val() != ''){
+                if($('#reg-acc-ip').val() == ''){
+                    $('#reg-acc-ip').focus();
+                    if ($('#reg-alert div').get(0) == undefined) {
+                         $('#reg-alert').append(''
+                             + '<div class="alert alert-warning alert-dismissible" role="alert">'
+                             + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                             + '    <span aria-hidden="true">&times;</span>'
+                             + '   </button>'
+                             + '  <strong>Please enter pw account!</strong>'
+                              + '</div>')
+                    }
+                    else if ($('#reg-alert div').get(0) != undefined){
+                        $('#reg-alert div strong').text("Please enter pw account!");
+                    }
+                }
+                else if($('#reg-acc-ip').val() != ''){
+                    if($('#reg-acc-ip').val() != $('#reg-pw-ip').val()){
+                        $('#reg-acc-ip').focus();
+                        if ($('#reg-alert div').get(0) == undefined) {
+                            $('#reg-alert').append(''
+                                + '<div class="alert alert-warning alert-dismissible" role="alert">'
+                                + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                                + '    <span aria-hidden="true">&times;</span>'
+                                + '   </button>'
+                                + '  <strong>Please input same password!</strong>'
+                                + '</div>')
+                        }
+                        else if ($('#reg-alert div').get(0) != undefined){
+                            $('#reg-alert div strong').text("Please input same password!");
+                        }
+                    }
+                    else {
+                        $('#reg-alert div').remove('div');
+                    }
+                }
+                else {
+                    $('#reg-alert div').remove('div');
+                }
+            }
+            else if ($('#reg-alert div').get(0) != undefined){
+                $('#reg-alert div').remove('div');
+            }
         }
     })
 });
