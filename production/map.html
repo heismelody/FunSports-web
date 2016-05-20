@@ -25,273 +25,139 @@
   </head>
 
   <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
-            </div>
+  <div class="container body">
 
-            <div class="clearfix"></div>
+    <!-- top navigation -->
+    <div class="top_nav">
+      <div class="nav_menu">
+        <nav  role="navigation">
 
-            <!-- menu profile quick info -->
-            <div class="profile">
-              <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index.html">Home</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Table <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="tables.html">Table</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-location-arrow"></i> Map <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="map.html">Map</a>
-                        </li>
-                      </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-file"></i> File <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="file.html">File</a>
-                        </li>
-                      </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="settings.html">Settigs</a>
-                        </li>
-                      </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="menu_section">
-                <h3>Extension</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-windows"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="page_404.html">404 Error</a>
-                      </li>
-                      <li><a href="page_500.html">500 Error</a>
-                      </li>
-                      <li><a href="login.html">Login Page</a>
-                      </li>
-                      <li><a href="register.html">Register Page</a>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="">
+              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <img src="images/img.jpg" alt="">John Doe
+                <span class=" fa fa-angle-down"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true">
-                </span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a href="login.html" data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-
-          <div class="nav_menu">
-            <nav class="" role="navigation">
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
+              <ul class="dropdown-menu dropdown-usermenu pull-right">
+                <li><a href="index.html">  Home</a></li>
+                <li>
+                  <a href="settings.html">
+                    <span>Settings</span>
                   </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">  File</a></li>
-                    <li>
-                      <a href="settings.html">
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
                 </li>
-
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                                          <img src="images/img.jpg" alt="Profile Image" />
-                                      </span>
-                        <span>
-                                          <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                                      </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a href="inbox.html">
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-
+                <li><a href="help.html">Help</a></li>
+                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
               </ul>
-            </nav>
-          </div>
+            </li>
 
-        </div>
-        <!-- /top navigation -->
+            <li role="presentation" class="dropdown">
+              <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-envelope-o"></i>
+                <span class="badge bg-green">6</span>
+              </a>
+              <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                <li>
+                  <a>
+                        <span class="image">
+                                          <img src="images/img.jpg" alt="Profile Image" />
+                                      </span>
+                        <span>
+                                          <span>John Smith</span>
+                        <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                                      </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                        <span class="image">
+                                          <img src="images/img.jpg" alt="Profile Image" />
+                                      </span>
+                        <span>
+                                          <span>John Smith</span>
+                        <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                                      </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                        <span class="image">
+                                          <img src="images/img.jpg" alt="Profile Image" />
+                                      </span>
+                        <span>
+                                          <span>John Smith</span>
+                        <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                                      </span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                        <span class="image">
+                                          <img src="images/img.jpg" alt="Profile Image" />
+                                      </span>
+                        <span>
+                                          <span>John Smith</span>
+                        <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                                      </span>
+                  </a>
+                </li>
+                <li>
+                  <div class="text-center">
+                    <a href="inbox.html">
+                      <strong>See All Alerts</strong>
+                      <i class="fa fa-angle-right"></i>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
 
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-
-          <div class="row">
-          <!-- map -->
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="dashboard_graph">
-                  <div id="contai" tabindex="0" class="demo-placeholder" style="width: 100%; height:570px;"></div>
-                  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TkbLGRm1qs80OlrdZiRxS2U9ap96dn0x"></script>
-                  <script type="text/javascript">
-                    var bmap = new BMap.Map("contai");
-                    var menu = new BMap.ContextMenu();
-                    bmap.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
-                    bmap.setCurrentCity("北京");
-                    bmap.enableScrollWheelZoom(true);
-
-                    var txtmenuitem = [
-		                    {
-			                       text:'zoom in',
-			                       callback:function(){bmap.zoomIn()}
-		                    },
-		                    {
-			                       text:'zoom out',
-			                       callback:function(){bmap.zoomOut()}
-		                    }
-	                  ];
-
-                    for(var i=0; i < txtmenuitem.length; i++){
-		                    menu.addItem(new BMap.MenuItem(txtmenuitem[i].text,txtmenuitem[i].callback,100));
-	                  }
-                    bmap.addContextMenu(menu);
-                  </script>
-              </div>
-            </div>
-          <!-- /map -->
-          </div>
-
-        </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+          </ul>
+        </nav>
       </div>
     </div>
+    <!-- /top navigation -->
 
+    <!-- page content -->
+    <div class="right_col" role="main" style="margin-left:0;min-height:944px">
+      <div class="page-content container">
+        <div class="column">
+          <div class="col-md-12">
+            <div class="x_panel fixed_height_390" id="mapa">
+              <script>
+
+                var map;
+                function initMap() {
+                  map = new google.maps.Map(document.getElementById('mapa'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 8
+                  });
+                }
+
+              </script>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvcOFXWa3T409_W7HHo8GhReeEQwCAsCs&callback=initMap"
+                      async defer>
+              </script>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+
+  </div>
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->

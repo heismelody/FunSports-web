@@ -1981,7 +1981,6 @@ span.section {
   border-bottom: 1px solid #e5e5e5;
 }
 .form-control {
-  border-radius: 0;
   width: 100%;
 }
 .form-horizontal .control-label {
@@ -4692,32 +4691,3 @@ ul.notifications {
   border: 1px solid #e5e5e5;
 }
 /** /Dropzone.js **/
-
-/** Custome **/
-.active{
-  font-weight: bold;
-}
-.page-content{
-  padding-top: 20px;
-  }
-.container{
-  box-sizing: border-box;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.column{
-  display: block;
-  width: 980px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-img{
-  max-height: 70px;
-  max-width: 70px;
-}
-
-
-/** /Custome **/
