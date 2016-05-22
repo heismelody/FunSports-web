@@ -326,6 +326,14 @@ $(document).ready(function () {
 //reigster page custom js
 $(document).ready(function () {
 
+    $('#test').click(function () {
+        $.ajax({
+            url: "api.php",
+            success: function(response,status,hrx){
+                $('#testa').html(response);
+        }});
+    });
+
     //register email tooltip
     $('#reg-em-ip').tooltip();
     var valemail = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/;
