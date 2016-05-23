@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 var URL = window.location.href.split('?')[0],
     $BODY = $('body'),
     $MENU_TOGGLE = $('#menu_toggle'),
@@ -318,21 +317,35 @@ $(document).ready(function () {
             else if ($('#log-alert div').get(0) != undefined){
                 $('#log-alert div').remove('div');
             }
+            else {
+                //Important!!!!
+                //This code submit the user name and the password to the server
+                $.ajax({
+                    type : "POST",
+                    url: "api.php",
+                    data :{
+                        name : $("#log-usr-ip").val(),
+                        password : $("#log-pw-ip").val()
+                    },
+                    success: function(response,status,hrx){
+                    }
+                });
+            }
         }
-    })
+    });
 
 });
 
 //reigster page custom js
 $(document).ready(function () {
-
-    $('#test').click(function () {
-        $.ajax({
-            url: "api.php",
-            success: function(response,status,hrx){
-                $('#testa').html(response);
-        }});
-    });
+    //
+    // $('#test').click(function () {
+    //     $.ajax({
+    //         url: "api.php",
+    //         success: function(response,status,hrx){
+    //             $('#testa').html(response);
+    //     }});
+    // });
 
     //register email tooltip
     $('#reg-em-ip').tooltip();
