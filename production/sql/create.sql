@@ -2,7 +2,7 @@ CREATE TABLE user(
 user_id			int				NOT NULL,
 email			varchar(20)		NOT NULL,
 nick			varchar(20)		NOT NULL,
-pw				varchar(20)		NOT NULL,
+pw				varchar(32)		NOT NULL,
 icon			varchar(20) ,
 address			varchar(35) ,
 weight			int,
@@ -15,7 +15,7 @@ PRIMARY KEY 	(user_id)
 
 CREATE TABLE admin(
 admin_id		int				NOT NULL,
-pw				varchar(20)		NOT NULL,
+pw				varchar(32)		NOT NULL,
 PRIMARY KEY		(admin_id)
 );
 
