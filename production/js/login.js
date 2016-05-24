@@ -9,6 +9,7 @@ var alert_box=''
     + '  <strong>Please enter name!</strong>'
     + '</div>';
 
+
 //signin page custom js
 $(document).ready(function () {
 
@@ -43,11 +44,11 @@ $(document).ready(function () {
                     $('#log-alert div strong').text("Please enter pw!");}
             }
             else if($('#log-pw-ip').val() != ''){
-                //Important!!!!
+                //Core process code:
                 //This code submit the user name and the password to the server
                 $.ajax({
                     type : "POST",
-                    url: "api.php",
+                    url: "php/login.php",
                     data :{
                         name : $("#log-usr-ip").val(),
                         password : $.md5($("#log-pw-ip").val())
@@ -59,6 +60,7 @@ $(document).ready(function () {
                         else {
                             if ($('#log-alert div').get(0) == undefined) {
                                 $('#log-alert').append(alert_box);
+                                $('#log-alert div strong').text("Error name or password!");
                             }
                             else {
                                 $('#log-alert div strong').text("Error name or password!");
@@ -68,11 +70,9 @@ $(document).ready(function () {
                     }
                 });
             }
-
             else if ($('#log-alert div').get(0) != undefined){
                 $('#log-alert div').remove('div');
             }
         }
     });
-
 });

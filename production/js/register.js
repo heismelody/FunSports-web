@@ -12,14 +12,6 @@ var alert_box=''
 
 //reigster page custom js
 $(document).ready(function () {
-    //
-    // $('#test').click(function () {
-    //     $.ajax({
-    //         url: "api.php",
-    //         success: function(response,status,hrx){
-    //             $('#testa').html(response);
-    //     }});
-    // });
 
     //register email tooltip
     $('#reg-em-ip').tooltip();
@@ -72,7 +64,34 @@ $(document).ready(function () {
                             $('#reg-alert div strong').text("Please input same password!");
                         }
                     }
-                    else {
+                    else if($('#reg-acc-ip').val() == $('#reg-pw-ip').val()){
+                        //Core process code:
+                        //This code submit the user name and the password to the server
+                        $.ajax({
+                            type : "POST",
+                            url: "php/register.php",
+                            data :{
+                                name : $("#reg-em-ip").val(),
+                                password : $.md5($("#reg-pw-ip").val())
+                            },
+                            success: function(response,status,hrx){
+                                if(response == 1){
+                                    location.href="index.html"
+                                }
+                                else {
+                                    if ($('#reg-alert div').get(0) == undefined) {
+                                        $('#reg-alert').append(alert_box);
+                                        $('#reg-alert div strong').text("Email had been used!");
+                                    }
+                                    else {
+                                        $('#reg-alert div strong').text("Email had been used!");
+                                    }
+                                    $('#reg-pw-ip').focus();
+                                }
+                            }
+                        });
+                    }
+                    else if ($('#reg-alert div').get(0) != undefined){
                         $('#reg-alert div').remove('div');
                     }
                 }
