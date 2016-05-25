@@ -1,6 +1,6 @@
 CREATE TABLE user(	
 user_id			int				NOT NULL  auto_increment,
-email			varchar(20)		NOT NULL,
+email			varchar(20)		NOT NULL  UNIQUE ,
 nick			varchar(20)		NOT NULL,
 pw				varchar(32)		NOT NULL,
 icon			varchar(20) ,

@@ -1,24 +1,21 @@
 <?php
-include "db.php";
+include_once "mysqlconn.php";
+include_once "mysqlquery.php";
 
-$sql = ' SELECT pw 
-         FROM   test.user
-         WHERE  email='.'"'.$_POST["name"].'";';
+$name = $_POST["name"];
+$pw = $_POST["password"];
 
-$dbConn = MySqlConn::GetInstance();
-$result=$dbConn->query($sql);
+$result=MySqlQuery::select_user_pw($name);
 
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        if($_POST["password"] == $row["pw"]) {
+if (mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_assoc($result);
+    if($pw == $row["pw"]) {
             echo 1;
         }
     }
-}
-else {
-    echo "error";
-}
+    else {
+        echo "error";
+    }
 
 ?>
 

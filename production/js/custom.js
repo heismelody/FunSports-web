@@ -268,3 +268,30 @@ if (typeof NProgress != 'undefined') {
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
+
+
+//change user icon
+$(document).ready(function() {
+
+    sessionStorage.setItem('user', '904651127@qq.com');
+    
+    $.ajax({
+        type : "POST",
+        url  : "php/custom.php",
+        data :{
+            name : sessionStorage.getItem('user')
+        },
+        success: function(response,status,hrx){
+            if(response){
+                $(".profile .profile_pic img").attr('src',response);
+                $(".top_nav .nav_menu img")[0].src=response;
+                $(".top_nav .nav_menu img")[1].src=response;
+                $(".top_nav .nav_menu img")[2].src=response;
+                $(".top_nav .nav_menu img")[3].src=response;
+                $(".top_nav .nav_menu img")[4].src=response;
+            }
+        }
+    });
+
+
+});

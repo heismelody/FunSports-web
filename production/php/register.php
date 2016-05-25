@@ -1,14 +1,12 @@
 <?php
-include "db.php";
+include_once "mysqlconn.php";
+include_once "mysqlquery.php";
 
-$sql = ' SELECT pw 
-         FROM   test.user
-         WHERE  email='.'"'.$_POST["name"].'";';
+$email=$_POST["name"];
 
-$dbConn = MySqlConn::GetInstance();
-$result=$dbConn->query($sql);
+$result=MySqlQuery::select_user_pw($email);
 
-if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result) == 1) {
     echo "error";
 }
 else {

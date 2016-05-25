@@ -4695,3 +4695,11 @@ ul.notifications {
   border: 1px solid #e5e5e5;
 }
 /** /Dropzone.js **/
+
+.site_title img{
+  max-height: 34px;
+  max-width: 30px;
+  padding: auto;
+  margin: auto;
+  margin-left: auto;
+}
