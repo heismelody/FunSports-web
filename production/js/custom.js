@@ -272,14 +272,11 @@ if (typeof NProgress != 'undefined') {
 
 //change user icon
 $(document).ready(function() {
-
-    sessionStorage.setItem('user', '904651127@qq.com');
-    
     $.ajax({
         type : "POST",
         url  : "php/custom.php",
         data :{
-            name : sessionStorage.getItem('user')
+            sessionid : window.sessionStorage.getItem("sessionid")
         },
         success: function(response,status,hrx){
             if(response){
@@ -295,3 +292,12 @@ $(document).ready(function() {
 
 
 });
+
+//
+$(document).ready(function() {
+    //wrong code
+    // $(".top_nav .nav_menu .dropdown-menu li a")[3].click(function () {
+    //     window.sessionStorage.removeItem("sessionid");
+    // })
+});
+

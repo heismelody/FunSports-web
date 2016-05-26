@@ -76,7 +76,8 @@ $(document).ready(function () {
                             },
                             success: function(response,status,hrx){
                                 if(response == 1){
-                                    location.href="index.html"
+                                    alert("success");
+                                    location.href="login.html";
                                 }
                                 else {
                                     if ($('#reg-alert div').get(0) == undefined) {
@@ -90,6 +91,7 @@ $(document).ready(function () {
                                 }
                             }
                         });
+
                     }
                     else if ($('#reg-alert div').get(0) != undefined){
                         $('#reg-alert div').remove('div');

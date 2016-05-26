@@ -10,8 +10,13 @@ var alert_box=''
     + '</div>';
 
 
+$(document).one('ready', function () {
+    window.sessionStorage.removeItem("sessionid");
+});
+
 //signin page custom js
 $(document).ready(function () {
+
 
     //username input tooltip
     $("#log-usr-ip").tooltip();
@@ -53,9 +58,15 @@ $(document).ready(function () {
                         name : $("#log-usr-ip").val(),
                         password : $.md5($("#log-pw-ip").val())
                     },
+                    //The response include two parts:
+                    //{result,sessionid}
+                    //result:check if the user and pw match
+                    //sessionid:record this talk
                     success: function(response,status,hrx){
-                        if(response == 1){
-                            location.href="index.html"
+                        var ajaxJson = eval("(" + response + ")");
+                        if(ajaxJson.result == "true"){
+                            window.sessionStorage.setItem("sessionid",ajaxJson.sessionid);
+                            location.href="index.html";
                         }
                         else {
                             if ($('#log-alert div').get(0) == undefined) {

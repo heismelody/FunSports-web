@@ -8,21 +8,26 @@
 
 include_once "mysqlquery.php";
 
-function get_user_icon(){
-    $name = $_POST["name"];
+session_start();
 
-    $result=MySqlQuery::select_user_icon($name);
+if($_POST["sessionid"] == session_id()){
+    function get_user_icon(){
+        $name = $_SESSION["name"];
 
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        echo $row["icon"];
+        $result=MySqlQuery::select_user_icon($name);
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+            echo $row["icon"];
+        }
+        else {
+            echo "images/default-user.png";
+        }
     }
-    else {
-        echo "images/default-user.png";
-    }
+
+    get_user_icon();
 }
 
 
-get_user_icon();
 
 ?>
