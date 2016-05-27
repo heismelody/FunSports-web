@@ -31,5 +31,14 @@ class MySqlQuery{
         return $result;
     }
 
+    public static function create_user($email,$password){
+        $sql = ' INSERT INTO test.user (email,pw)
+                 VALUES ("'.$email.'",md5("'.$password.'"));';
+        
+        $dbConn = MySqlConn::GetInstance();
+        $result = $dbConn->query($sql);
+
+        return $result;
+    }
 }
 ?>

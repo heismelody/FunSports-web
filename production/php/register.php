@@ -2,14 +2,19 @@
 include_once "mysqlconn.php";
 include_once "mysqlquery.php";
 
-$email=$_POST["name"];
+$email = $_POST["name"];
+$pw = $_POST["pw"];
 
-$result=MySqlQuery::select_user_pw($email);
+$result = MySqlQuery::create_user($email,$pw);
 
-if (mysqli_num_rows($result) == 1) {
-    echo "error";
+if ($result) {
+    echo "{
+            result : 'true'     
+          }";
 }
 else {
-    echo "1";
+    echo "{
+            result : 'false'     
+          }";
 }
 ?>

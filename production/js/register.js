@@ -72,10 +72,11 @@ $(document).ready(function () {
                             url: "php/register.php",
                             data :{
                                 name : $("#reg-em-ip").val(),
-                                password : $.md5($("#reg-pw-ip").val())
+                                pw : $.md5($("#reg-pw-ip").val())
                             },
                             success: function(response,status,hrx){
-                                if(response == 1){
+                                var resJson = eval("(" + response + ")");
+                                if(resJson.result == "true"){
                                     alert("success");
                                     location.href="login.html";
                                 }

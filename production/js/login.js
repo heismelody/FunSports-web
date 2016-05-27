@@ -63,11 +63,13 @@ $(document).ready(function () {
                     //result:check if the user and pw match
                     //sessionid:record this talk
                     success: function(response,status,hrx){
-                        var ajaxJson = eval("(" + response + ")");
-                        if(ajaxJson.result == "true"){
+                        var resJson = eval("(" + response + ")");
+                        if(resJson.result == "true"){
                             window.sessionStorage.setItem("sessionid",ajaxJson.sessionid);
                             location.href="index.html";
                         }
+
+
                         else {
                             if ($('#log-alert div').get(0) == undefined) {
                                 $('#log-alert').append(alert_box);
