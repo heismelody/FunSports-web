@@ -65,7 +65,7 @@ $(document).ready(function () {
                     success: function(response,status,hrx){
                         var resJson = eval("(" + response + ")");
                         if(resJson.result == "true"){
-                            window.sessionStorage.setItem("sessionid",ajaxJson.sessionid);
+                            window.sessionStorage.setItem("sessionid",resJson.sessionid);
                             location.href="index.html";
                         }
 

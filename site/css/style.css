@@ -91,7 +91,7 @@ h3 {
 }
 
 .page1 h3 {
-    padding-top: 69px;
+    padding-top: 5px;
     margin-bottom: 23px;
 }
 
@@ -272,7 +272,7 @@ a:hover {
 
 header {
 	display: block;
-    padding-top: 47px;
+    padding-top: 20px;
     text-align: center;
 }
 
@@ -303,7 +303,7 @@ header h1 a img {
     border-bottom: 1px solid #c2c2c2;
     padding: 0 115px 20px;
     display: inline-block;
-    margin-bottom: 61px;
+    margin-bottom: 10px;
 }
 
 .socials .fa {

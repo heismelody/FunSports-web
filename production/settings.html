@@ -137,7 +137,7 @@
 
         <!-- page content -->
         <div class="right_col" role="main" style="margin-left:0;min-height:944px">
-          <div class="page-content container">
+          <div class="page-content container setting-page-content">
             <div class="column">
                   <div class="col-md-3">
                       <div class="panel panel-default">
@@ -156,14 +156,43 @@
                           <div class="panel panel-default" id="publicprofile">
                               <div class="panel-heading">Public Profile</div>
                               <div class="panel-body list-group" style="padding:0px">
-                                  <form class="column two-third">
-                                      <div class="form-group">
-                                          <label for="exampleInputEmail1">Email address</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                  <form class="column two-third" style="padding-left: 10px;padding-top: 25px">
+                                      <div class="form-group" style="display: inline-block" id="avatar-upload">
+                                              <dt><label>Profile picture</label></dt>
+                                              <img src="images/default-user.png" alt="" width="70px" height="70px" style="float: left!important;">
+                                              <div class="avatar-upload">
+                                                  <button type="submit" class="btn btn-success" style="margin-top: 10px">Update new picture</button>
+                                              </div>
                                       </div>
                                       <div class="form-group">
-                                          <label for="exampleInputPassword1">Password</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                          <label>Name</label>
+                                          <input class="form-control"placeholder="Name">
+                                      </div>
+                                      <div id="gender" class="btn-group" data-toggle="buttons" style="margin: 15px 0">
+                                          <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                              <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                          </label>
+                                          <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                              <input type="radio" name="gender" value="female"> Female
+                                          </label>
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label>Birthday</label>
+                                          <input type="text" class="form-control" placeholder="Birthday" data-inputmask="'mask': '9999-99-99'">
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label>Address</label>
+                                          <input class="form-control" placeholder="Address">
+                                      </div>
+                                      <div class="form-group">
+                                          <label>Weight  (kg)</label>
+                                          <input class="form-control" data-inputmask="'mask':'99'" placeholder="Weight">
+                                      </div>
+                                      <div class="form-group">
+                                          <label>Height  (cm)</label>
+                                          <input type="text" class="form-control" placeholder="Height" data-inputmask="'mask': '999'">
                                       </div>
                                       <button type="submit" class="btn btn-success">Update Profile</button>
                                   </form>
@@ -206,6 +235,8 @@
     <script src="../vendors/bernii/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->
@@ -229,5 +260,13 @@
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
+
+    <!-- jquery.inputmask -->
+    <script>
+        $(document).ready(function() {
+            $(":input").inputmask();
+        });
+    </script>
+    <!-- /jquery.inputmask -->
   </body>
 </html>
