@@ -1,8 +1,21 @@
 <?php
 include_once "mysqlquery.php";
 
-$result = MySqlQuery::create_user('82655077@qq.com','110');
-echo $result;
-echo $row = mysqli_fetch_assoc($result);
-echo mysqli_num_rows($result);
+function get_user_icon(){
+
+    $email = "826556077@qq.com";
+    $result=MySqlQuery::select_user_icon($email);
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        echo $row["icon"];
+    }
+    else {
+        echo "images/default-user.png";
+    }
+}
+
+get_user_icon();
+
+
 ?>

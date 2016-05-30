@@ -17,7 +17,6 @@ $(document).one('ready', function () {
 //signin page custom js
 $(document).ready(function () {
 
-
     //username input tooltip
     $("#log-usr-ip").tooltip();
     $("#log-usr-ip").bind('input propertychange mouseover click mousedown focus', function() {

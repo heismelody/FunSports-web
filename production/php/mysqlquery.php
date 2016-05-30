@@ -31,10 +31,37 @@ class MySqlQuery{
         return $result;
     }
 
+    public static function select_user($email){
+        $sql = ' SELECT *
+                 FROM   test.user
+                 WHERE  email='.'"'.$email.'";';
+
+        $dbConn = MySqlConn::GetInstance();
+        $result=$dbConn->query($sql);
+
+        return $result;
+    }
+
     public static function create_user($email,$password){
         $sql = ' INSERT INTO test.user (email,pw)
                  VALUES ("'.$email.'",md5("'.$password.'"));';
         
+        $dbConn = MySqlConn::GetInstance();
+        $result = $dbConn->query($sql);
+
+        return $result;
+    }
+
+    public static function update_user($email,$nick,$address,$weight,$height,$birthday,$gender){
+
+        $sql = 'UPDATE test.user SET nick = '.'"'.$nick.'",
+                                     address = '.'"'.$address.'",
+                                     weight = '.'"'.$weight.'",
+                                     height = '.'"'.$height.'",
+                                     birthday = '.'"'.$birthday.'",
+                                     gender = '.'"'.$gender.'"
+                WHERE email = '.'"'.$email.'";';
+
         $dbConn = MySqlConn::GetInstance();
         $result = $dbConn->query($sql);
 

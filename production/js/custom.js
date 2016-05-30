@@ -272,11 +272,13 @@ if (typeof NProgress != 'undefined') {
 
 //change user icon
 $(document).ready(function() {
+
     $.ajax({
         type : "POST",
         url  : "php/custom.php",
         data :{
-            sessionid : window.sessionStorage.getItem("sessionid")
+            sessionid : window.sessionStorage.getItem("sessionid"),
+            email : window.sessionStorage.getItem("email")
         },
         success: function(response,status,hrx){
             if(response){
@@ -295,10 +297,10 @@ $(document).ready(function() {
 });
 
 //
-$(document).ready(function() {
-    //wrong code
-    // $(".top_nav .nav_menu .dropdown-menu li a")[3].click(function () {
-    //     window.sessionStorage.removeItem("sessionid");
-    // })
-});
+// $(document).ready(function() {
+//
+//     $(".top_nav .nav_menu .dropdown-menu li a")[3].click(function () {
+//          window.sessionStorage.removeItem("sessionid");
+//     })
+// });
 

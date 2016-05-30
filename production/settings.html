@@ -164,7 +164,7 @@
                                                   <button type="submit" class="btn btn-success" style="margin-top: 10px">Update new picture</button>
                                               </div>
                                       </div>
-                                      <div class="form-group">
+                                      <div class="form-group" id="set-nick">
                                           <label>Name</label>
                                           <input class="form-control"placeholder="Name">
                                       </div>
@@ -177,24 +177,24 @@
                                           </label>
                                       </div>
 
-                                      <div class="form-group">
+                                      <div class="form-group" id="set-birthday">
                                           <label>Birthday</label>
                                           <input type="text" class="form-control" placeholder="Birthday" data-inputmask="'mask': '9999-99-99'">
                                       </div>
 
-                                      <div class="form-group">
+                                      <div class="form-group" id="set-address">
                                           <label>Address</label>
                                           <input class="form-control" placeholder="Address">
                                       </div>
-                                      <div class="form-group">
+                                      <div class="form-group" id="set-weight">
                                           <label>Weight  (kg)</label>
                                           <input class="form-control" data-inputmask="'mask':'99'" placeholder="Weight">
                                       </div>
-                                      <div class="form-group">
+                                      <div class="form-group" id="set-height">
                                           <label>Height  (cm)</label>
                                           <input type="text" class="form-control" placeholder="Height" data-inputmask="'mask': '999'">
                                       </div>
-                                      <button type="submit" class="btn btn-success">Update Profile</button>
+                                      <button id="btn-update-profile" class="btn btn-success">Update Profile</button>
                                   </form>
                               </div>
                           </div>
@@ -260,6 +260,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
+
+    <script src="js/settings.js"></script>
 
     <!-- jquery.inputmask -->
     <script>

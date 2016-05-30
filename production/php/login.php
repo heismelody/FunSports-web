@@ -13,19 +13,24 @@ $result=MySqlQuery::select_user_pw($name);
 
 if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
-    if($pw == $row["pw"]) {
-            $_SESSION['name']=$_POST["name"];
-            echo "{
+    $_SESSION["email"] = $name;
+    if ($pw == $row["pw"]) {
+        echo "{
                         result : 'true',
-                        sessionid : '".$sessionid."'
-                  }";
-        }
+                        sessionid : '" . $sessionid . "'
+               }";
     }
     else {
         echo "{
-                        result : 'false'     
-              }";
+               result : 'false'
+          }";
     }
+}
+else {
+    echo "{
+               result : 'false'
+          }";
+}
 
 ?>
 

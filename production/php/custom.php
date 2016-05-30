@@ -10,11 +10,12 @@ include_once "mysqlquery.php";
 
 session_start();
 
+
 if($_POST["sessionid"] == session_id()){
     function get_user_icon(){
-        $name = $_SESSION["name"];
 
-        $result=MySqlQuery::select_user_icon($name);
+        $email = $_SESSION["email"];
+        $result=MySqlQuery::select_user_icon($email);
 
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
