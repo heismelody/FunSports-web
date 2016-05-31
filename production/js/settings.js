@@ -14,8 +14,17 @@ $(document).ready(function () {
             var resJson = eval("(" + response + ")");
             if(resJson.result == "true"){
                 $("#set-nick input").val(resJson.nick);
-                $("#set-nick input").val(resJson.nick);
-                $("#set-nick input").val(resJson.nick);
+                $("#set-address input").val(resJson.address);
+                $("#set-birthday input").val(resJson.birthday);
+                $("#set-weight input").val(resJson.weight);
+                $("#set-height input").val(resJson.height);
+                if(resJson.gender == 'male'){
+                    $('#gender-male').addClass("active");
+                }
+                else {
+                    $('#gender-female').addClass("active");
+                }
+
             }
         }
     });
@@ -36,14 +45,28 @@ $(document).ready(function () {
             success: function(response,status,hrx){
                 var resJson = eval("(" + response + ")");
                 if(resJson.result == "true"){
-
                 }
-
             }
-
         });
     })
-    
 
+    $('#btn-update-pw').click(function () {
+        if($('#set-newpw').val() == $('#set-newpwac').val()){
+            $.ajax({
+                type : "POST",
+                url  : "php/settings.php",
+                data :{
+                    method : "updatepw",
+                    newpw : $.md5($('#set-newpw input').val()),
+                    oldpw : $.md5($('#set-pw input').val())
+                },
+                success: function(response,status,hrx){
+                    var resJson = eval("(" + response + ")");
+                    if(resJson.result == "true"){
+                    }
+                }
+            });
+        }
+    })
 
 });

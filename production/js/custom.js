@@ -288,7 +288,9 @@ $(document).ready(function() {
                 $(".top_nav .nav_menu img")[2].src=response;
                 $(".top_nav .nav_menu img")[3].src=response;
                 $(".top_nav .nav_menu img")[4].src=response;
-                $("#avatar-upload img")[0].src=response;
+                if($('#avatar-upload')){
+                    $("#avatar-upload img")[0].src=response;
+                }
             }
         }
     });

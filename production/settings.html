@@ -169,10 +169,10 @@
                                           <input class="form-control"placeholder="Name">
                                       </div>
                                       <div id="gender" class="btn-group" data-toggle="buttons" style="margin: 15px 0">
-                                          <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                          <label id="gender-male" class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                               <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
                                           </label>
-                                          <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                          <label id="gender-female" class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                               <input type="radio" name="gender" value="female"> Female
                                           </label>
                                       </div>
@@ -202,7 +202,21 @@
                           <div class="panel panel-default" id="account">
                               <div class="panel-heading">Account</div>
                               <div class="panel-body list-group" style="padding:0px">
-
+                                  <form class="column two-third" style="padding-left: 10px;padding-top: 25px">
+                                      <div class="form-group" id="set-pw">
+                                          <label>Old Password</label>
+                                          <input class="form-control" placeholder="Password">
+                                      </div>
+                                      <div class="form-group" id="set-newpw">
+                                          <label>New Password</label>
+                                          <input class="form-control" placeholder="New Passsword">
+                                      </div>
+                                      <div class="form-group" id="set-newpwac">
+                                          <label>New Password Account</label>
+                                          <input type="password" class="form-control" placeholder="Password account">
+                                      </div>
+                                      <button id="btn-update-pw" class="btn btn-danger">Update Password</button>
+                                  </form>
                               </div>
                           </div>
 
@@ -260,6 +274,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="js/custom.js"></script>
+
+    <script src="js/jQuery.md5.js"></script>
 
     <script src="js/settings.js"></script>
 

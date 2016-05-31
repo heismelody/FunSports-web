@@ -52,6 +52,16 @@ class MySqlQuery{
         return $result;
     }
 
+    public static function update_user_pw($email,$password){
+        $sql = 'UPDATE test.user SET pw = '.'"'.$password.'"                                
+                WHERE email = '.'"'.$email.'";';
+
+        $dbConn = MySqlConn::GetInstance();
+        $result = $dbConn->query($sql);
+
+        return $result;
+    }
+
     public static function update_user($email,$nick,$address,$weight,$height,$birthday,$gender){
 
         $sql = 'UPDATE test.user SET nick = '.'"'.$nick.'",
