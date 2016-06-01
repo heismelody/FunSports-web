@@ -77,5 +77,15 @@ class MySqlQuery{
 
         return $result;
     }
+
+    public static function query_all_user(){
+        $sql = ' SELECT email,nick,address,weight,height,birthday,gender
+                 FROM   test.user';
+
+        $dbConn = MySqlConn::GetInstance();
+        $result=$dbConn->query($sql);
+
+        return $result;
+    }
 }
 ?>

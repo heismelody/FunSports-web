@@ -60,7 +60,7 @@ else if($method == "queryprofile"){
                         height : '" . $row["height"] . "',
                         birthday : '" . $row["birthday"] . "',
                         gender : '" . $row["gender"] . "'
-           }";
+          }";
 }
 else if($method == "updatepw"){
     $newpw = $_POST["newpw"];
