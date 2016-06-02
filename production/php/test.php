@@ -1,21 +1,13 @@
 <?php
 include_once "mysqlquery.php";
 
-function get_user_icon(){
+$result = MySqlQuery::query_all_user();
 
-    $email = "826556077@qq.com";
-    $result=MySqlQuery::select_user_icon($email);
 
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        echo $row["icon"];
-    }
-    else {
-        echo "images/default-user.png";
-    }
+
+while($row = mysqli_fetch_assoc($result)) {
+    echo json_encode($row);
 }
-
-get_user_icon();
-
+echo mysqli_num_rows($result);
 
 ?>
