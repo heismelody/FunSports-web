@@ -23,13 +23,15 @@ $(document).ready(function () {
                 else {
                     resJson[i].gender = "female";
                 }
+                resJson[i].checkbox = "";
+                resJson[i].operation = "";
                 i++;
             }
             
             $("#table-all-profile").dataTable({
                 'data' : resJson,
                 "columns": [
-                    { "title": "<input type=\"checkbox\" class=\"flat\">"},
+                    { "title": "<input type=\"checkbox\" class=\"flat\">",data: 'checkbox'},
                     { "title": "Email",data: 'email'},
                     { "title": "Name" ,data: 'nick' },
                     { "title": "Address", data: 'address'},
@@ -37,7 +39,7 @@ $(document).ready(function () {
                     { "title": "Height" ,data: 'height'},
                     { "title": "Birthday",data: 'birthday'},
                     { "title": "Gender", data: 'gender'},
-                    { "title": "Operation"}
+                    { "title": "Operation",data: 'operation'}
                 ],
                 "createdRow": function ( row, data, index ) {
                     //行渲染回调,在这里可以对该行dom元素进行任何操作
