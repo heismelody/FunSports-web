@@ -4722,3 +4722,11 @@ ul.notifications {
 dd{
   display: block;
 }
+
+.map-page{
+  width: 1120px;
+  padding-left: 180px;
+  margin: 107px auto;
+  position: relative;
+  max-width: 1148px;
+}

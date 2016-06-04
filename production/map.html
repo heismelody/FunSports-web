@@ -25,6 +25,7 @@
     <!-- jVectorMap -->
     <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
 
+
     <!-- Custom Theme Style -->
     <link href="css/custom.css" rel="stylesheet">
 
@@ -140,8 +141,11 @@
     <div class="right_col" role="main" style="margin-left:0;min-height:944px">
       <div class="page-content container">
         <div class="column">
-          <div class="col-md-12">
-            <div class="x_panel fixed_height_750" id="map">
+          <div class="map-page">
+            <div class="x_panel fixed_height_320" id="map">
+            </div>
+            <div class="x_panel fixed_height_320" id="echart">
+
             </div>
           </div>
 
@@ -152,8 +156,8 @@
 
   </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvcOFXWa3T409_W7HHo8GhReeEQwCAsCs&callback=initMap" async defer>
-    </script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvcOFXWa3T409_W7HHo8GhReeEQwCAsCs&callback=initMap" async defer>-->
+    <!--</script>-->
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -194,6 +198,12 @@
     <!-- Custom Google Map -->
     <script src="js/map.js"></script>
     <!-- Googlemap -->
+
+    <!-- echart -->
+    <script src="../vendors/echart/echarts.simple.min.js"></script>
+    <!-- /echart -->
+
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=g1gPNmURBdh6k6L3fxD4kZh0T8rNIAfk"></script>
 
     <!-- Flot -->
     <!-- /Flot -->

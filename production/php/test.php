@@ -1,7 +1,7 @@
 <?php
 include_once "mysqlquery.php";
 
-$result = MySqlQuery::select_user_route("826556077@qq.com");
+$result = MySqlQuery::query_all_record();
 
 
 

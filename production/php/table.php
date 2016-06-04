@@ -25,4 +25,18 @@ if($method == "queryallprofile"){
         }
     }
 }
+else if($method == "queryallrecord") {
+    $result = MySqlQuery::query_all_record();
+
+    $i = 0;
+    while($row = mysqli_fetch_assoc($result)){
+        $i++;
+        if($i == mysqli_num_rows($result)){
+            echo json_encode($row);
+        }
+        else {
+            echo json_encode($row).",";
+        }
+    }
+}
 ?>
