@@ -39,4 +39,21 @@ else if($method == "queryallrecord") {
         }
     }
 }
+else if($method == "queryuserroute")
+{
+    $email = $_SESSION["email"];
+    $result = MySqlQuery::select_user_route_point($email);
+
+    $i = 0;
+    echo "{pointnum:".mysqli_num_rows($result)."},";
+    while($row = mysqli_fetch_assoc($result)){
+        $i++;
+        if($i == mysqli_num_rows($result)){
+            echo json_encode($row);
+        }
+        else {
+            echo json_encode($row).",";
+        }
+    }
+}
 ?>

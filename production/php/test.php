@@ -1,7 +1,7 @@
 <?php
 include_once "mysqlquery.php";
 
-$result = MySqlQuery::query_all_record();
+$result = MySqlQuery::select_user_route_point("826556077@qq.com");
 
 
 
