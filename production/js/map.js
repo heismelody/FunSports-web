@@ -16,6 +16,11 @@ $(document).ready(function () {
 
 $(document).ready(function (){
 
+    // Split(['#map', '#echart'], {
+    //     direction: 'vertical',
+    //     sizes: [50, 50]
+    // });
+
     $.ajax({
         type : "POST",
         url  : "php/table.php",
@@ -26,17 +31,43 @@ $(document).ready(function (){
             if(response){
                 var resJson = eval("([" + response + "])");
                 var routePoints=new Array(resJson[0].pointnum);
-                var map = new BMap.Map(document.getElementById('map'));    // 创建Map实例
-                map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-                map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
-                map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
-                map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
                 var i = 1;
+                var maxlat = resJson[1].lat;
+                var minlat = resJson[1].lat;
+                var maxlng = resJson[1].lng;
+                var minlng = resJson[1].lng;
+                var mapcenterLat = maxlat;
+                var mapcenterLng = maxlng;
                 while(resJson[i]){
+                    if(maxlat < resJson[i].lat){maxlat = resJson[i].lat;}
+                    if(minlat > resJson[i].lat){minlat = resJson[i].lat;}
+                    if(maxlng < resJson[i].lng){maxlng = resJson[i].lng;}
+                    if(minlng > resJson[i].lng){minlng = resJson[i].lng;}
                     routePoints[i-1]=new BMap.Point(resJson[i].lat,resJson[i].lng);
                     i++;
                 }
+                maxlat = parseFloat(maxlat);
+                minlat = parseFloat(minlat);
+                maxlng = parseFloat(maxlng);
+                minlng = parseFloat(minlng);
+                mapcenterLat = (maxlat+minlat)/2;
+                mapcenterLng = (maxlng+minlng)/2;
 
+                var map = new BMap.Map(document.getElementById('map'));    // 创建Map实例
+
+                var view = map.getViewport(eval(routePoints));
+                var mapZoom = view.zoom;
+                var centerPoint = view.center;
+                map.centerAndZoom(centerPoint,mapZoom);
+                map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+
+                var pt = new BMap.Point(116.417, 39.909);
+                var myIcon = new BMap.Icon("images/start-icon.png", new BMap.Size(300,157));
+                var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+                map.addOverlay(marker2);              // 将标注添加到地图中
+
+                map.enableScrollWheelZoom(true);
                 var polyline = new BMap.Polyline(routePoints, {
                     strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5
                 });
