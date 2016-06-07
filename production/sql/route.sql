@@ -40,3 +40,9 @@ insert into route_point (route_id,lat,lng)
 insert into test.user_record (user_id,record_id)
 		      values (7132805,1);
 
+
+
+insert into test.task (task_name,goal_type,goal_value,start_time,end_time)
+			   values ("running task","day","7","20160607","20160614");
+insert into test.user_task (user_id,task_id)
+			   values ("7132805","1");

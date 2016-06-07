@@ -86,6 +86,33 @@ class MySqlQuery{
         return $result;
     }
 
+    public static function select_user_task_forcalendar($email){
+        $sql = 'select task.task_id,task.task_name,task.start_time,task.end_time
+                from test.user,test.user_task,test.task
+                WHERE  email='.'"'.$email.'"
+                    AND user.user_id = user_task.user_id
+                    AND user_task.task_id = task.task_id;';
+
+        $dbConn = MySqlConn::GetInstance();
+        $result=$dbConn->query($sql);
+
+        return $result;
+    }
+
+    public static function select_user_taskcomple_forcal($email){
+        $sql = 'select task_completion.*,task.start_time
+                from test.user,test.user_task,test.task_completion,test.task
+                WHERE  email='.'"'.$email.'"
+                    AND user.user_id = user_task.user_id
+                    AND user_task.task_id = task_completion.task_id
+                    AND user_task.task_id = task.task_id;';
+
+        $dbConn = MySqlConn::GetInstance();
+        $result=$dbConn->query($sql);
+
+        return $result;
+    }
+
     public static function create_user($email,$password){
         $sql = ' INSERT INTO test.user (email,pw)
                  VALUES ("'.$email.'",md5("'.$password.'"));';

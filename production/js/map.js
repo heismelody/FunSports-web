@@ -32,27 +32,27 @@ $(document).ready(function (){
                 var resJson = eval("([" + response + "])");
                 var routePoints=new Array(resJson[0].pointnum);
 
-                var i = 1;
-                var maxlat = resJson[1].lat;
-                var minlat = resJson[1].lat;
-                var maxlng = resJson[1].lng;
-                var minlng = resJson[1].lng;
-                var mapcenterLat = maxlat;
-                var mapcenterLng = maxlng;
-                while(resJson[i]){
-                    if(maxlat < resJson[i].lat){maxlat = resJson[i].lat;}
-                    if(minlat > resJson[i].lat){minlat = resJson[i].lat;}
-                    if(maxlng < resJson[i].lng){maxlng = resJson[i].lng;}
-                    if(minlng > resJson[i].lng){minlng = resJson[i].lng;}
-                    routePoints[i-1]=new BMap.Point(resJson[i].lat,resJson[i].lng);
-                    i++;
-                }
-                maxlat = parseFloat(maxlat);
-                minlat = parseFloat(minlat);
-                maxlng = parseFloat(maxlng);
-                minlng = parseFloat(minlng);
-                mapcenterLat = (maxlat+minlat)/2;
-                mapcenterLng = (maxlng+minlng)/2;
+                // var i = 1;
+                // var maxlat = resJson[1].lat;
+                // var minlat = resJson[1].lat;
+                // var maxlng = resJson[1].lng;
+                // var minlng = resJson[1].lng;
+                // var mapcenterLat = maxlat;
+                // var mapcenterLng = maxlng;
+                // while(resJson[i]){
+                //     if(maxlat < resJson[i].lat){maxlat = resJson[i].lat;}
+                //     if(minlat > resJson[i].lat){minlat = resJson[i].lat;}
+                //     if(maxlng < resJson[i].lng){maxlng = resJson[i].lng;}
+                //     if(minlng > resJson[i].lng){minlng = resJson[i].lng;}
+                //     routePoints[i-1]=new BMap.Point(resJson[i].lat,resJson[i].lng);
+                //     i++;
+                // }
+                // maxlat = parseFloat(maxlat);
+                // minlat = parseFloat(minlat);
+                // maxlng = parseFloat(maxlng);
+                // minlng = parseFloat(minlng);
+                // mapcenterLat = (maxlat+minlat)/2;
+                // mapcenterLng = (maxlng+minlng)/2;
 
                 var map = new BMap.Map(document.getElementById('map'));    // 创建Map实例
 

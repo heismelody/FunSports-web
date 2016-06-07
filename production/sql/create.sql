@@ -72,7 +72,8 @@ record_time		timestamp		NOT NULL,
 completion_rate	varchar(10)		NOT NULL	DEFAULT'0',
 finish_type	    varchar(10),
 finish_time     timestamp,
-PRIMARY KEY 	(task_id)
+PRIMARY KEY 	(task_id),
+FOREIGN KEY 	(task_id)		references	task(task_id)
 );
 
 CREATE TABLE user_task(

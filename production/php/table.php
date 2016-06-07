@@ -56,4 +56,38 @@ else if($method == "queryuserroute")
         }
     }
 }
+else if($method == "queryusertaskforcalendar")
+{
+    $email = $_SESSION["email"];
+    $result = MySqlQuery::select_user_task_forcalendar($email);
+
+    $i = 0;
+    echo "{tasknum:".mysqli_num_rows($result)."},";
+    while($row = mysqli_fetch_assoc($result)){
+        $i++;
+        if($i == mysqli_num_rows($result)){
+            echo json_encode($row);
+        }
+        else {
+            echo json_encode($row).",";
+        }
+    }
+}
+else if($method == "queryusertaskcomplforcal")
+{
+    $email = $_SESSION["email"];
+    $result = MySqlQuery::select_user_taskcomple_forcal($email);
+
+    $i = 0;
+    echo "{taskcomplenum:".mysqli_num_rows($result)."},";
+    while($row = mysqli_fetch_assoc($result)){
+        $i++;
+        if($i == mysqli_num_rows($result)){
+            echo json_encode($row);
+        }
+        else {
+            echo json_encode($row).",";
+        }
+    }
+}
 ?>
