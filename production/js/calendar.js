@@ -8,62 +8,6 @@ $(window).load(function() {
     var event,
         eventTask;
 
-    $.ajax({
-        type: "POST",
-        url: "php/table.php",
-        data: {
-            method: "queryusertaskforcalendar"
-        },
-        success: function (response, status, hrx) {
-            if (response) {
-                var resJson = eval("([" + response + "])");
-                var i = 1;
-                event = new Array(resJson[0].tasknum);
-                while(resJson[i]){
-                    event[i-1]={
-                        title: resJson[i].task_name,
-                        start: resJson[i].start_time,
-                        end  : resJson[i].end_time
-                    };
-                    i++;
-                }
-
-                $('#calendar').fullCalendar({
-                    events: event
-                })
-            }
-        }
-    });
-
-    $.ajax({
-        type: "POST",
-        url: "php/table.php",
-        data: {
-            method: "queryusertaskcomplforcal"
-        },
-        success: function (response, status, hrx) {
-            alert(response);
-            if (response) {
-                var resJson = eval("([" + response + "])");
-                var i = 1;
-                eventTask = new Array(resJson[0].taskcomplenum);
-                while (resJson[i]) {
-                    eventTask[i - 1] = {
-                        title: resJson[i].task_name,
-                        start: resJson[i].start_time,
-                        end: resJson[i].record_time
-                    };
-                    i++;
-                }
-
-                $('#calendar').fullCalendar({
-                    events: eventTask
-                })
-            }
-        }
-    });
-
-
     var calendar = $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -121,16 +65,60 @@ $(window).load(function() {
 
             calendar.fullCalendar('unselect');
         },
-        editable: false,
-        eventSources: [
-            {
-                events: event
-            },
-            {
-                events: eventTask
-            }
-        ]
-
+        editable: false
     });
+
+    $.ajax({
+        type: "POST",
+        url: "php/table.php",
+        data: {
+            method: "queryusertaskforcalendar"
+        },
+        success: function (response, status, hrx) {
+            if (response) {
+                var resJson = eval("([" + response + "])");
+                var i = 1;
+                event = new Array(resJson[0].tasknum);
+                while(resJson[i]){
+                    event[i-1]={
+                        title: resJson[i].task_name,
+                        start: resJson[i].start_time,
+                        end  : resJson[i].end_time
+                    };
+                    i++;
+                }
+
+                $('#calendar').fullCalendar('addEventSource',event);
+            }
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "php/table.php",
+        data: {
+            method: "queryusertaskcomplforcal"
+        },
+        success: function (response, status, hrx) {
+            if (response) {
+                var resJson = eval("([" + response + "])");
+                var i = 1;
+                eventTask = new Array(resJson[0].taskcomplenum);
+                while (resJson[i]) {
+                    eventTask[i - 1] = {
+                        title: resJson[i].task_name,
+                        start: resJson[i].start_time,
+                        end: resJson[i].record_time,
+                        color: '#F4A72D'
+                    };
+                    i++;
+                }
+                $('#calendar').fullCalendar('addEventSource',eventTask);
+            }
+        }
+    });
+
+
+
 });
 <!-- /FullCalendar -->

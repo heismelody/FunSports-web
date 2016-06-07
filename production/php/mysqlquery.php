@@ -100,7 +100,7 @@ class MySqlQuery{
     }
 
     public static function select_user_taskcomple_forcal($email){
-        $sql = 'select task_completion.*,task.start_time
+        $sql = 'select task_completion.*,task.start_time,task.task_name
                 from test.user,test.user_task,test.task_completion,test.task
                 WHERE  email='.'"'.$email.'"
                     AND user.user_id = user_task.user_id
