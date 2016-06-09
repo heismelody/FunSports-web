@@ -1,7 +1,7 @@
 <?php
 include_once "mysqlquery.php";
 
-$result = MySqlQuery::select_user_taskcomple_forcal("826556077@qq.com");
+$result = MySqlQuery::select_user_route_point("826556077@qq.com");
 
 
 

@@ -33,34 +33,10 @@ $(document).ready(function (){
                 var routePoints = new Array(resJson[0].pointnum);
 
                 var i = 1;
-                var maxlat = resJson[1].lat;
-                var minlat = resJson[1].lat;
-                var maxlng = resJson[1].lng;
-                var minlng = resJson[1].lng;
-                var mapcenterLat = maxlat;
-                var mapcenterLng = maxlng;
                 while (resJson[i]) {
-                    if (maxlat < resJson[i].lat) {
-                        maxlat = resJson[i].lat;
-                    }
-                    if (minlat > resJson[i].lat) {
-                        minlat = resJson[i].lat;
-                    }
-                    if (maxlng < resJson[i].lng) {
-                        maxlng = resJson[i].lng;
-                    }
-                    if (minlng > resJson[i].lng) {
-                        minlng = resJson[i].lng;
-                    }
                     routePoints[i - 1] = new BMap.Point(resJson[i].lat, resJson[i].lng);
                     i++;
                 }
-                maxlat = parseFloat(maxlat);
-                minlat = parseFloat(minlat);
-                maxlng = parseFloat(maxlng);
-                minlng = parseFloat(minlng);
-                mapcenterLat = (maxlat + minlat) / 2;
-                mapcenterLng = (maxlng + minlng) / 2;
 
                 var map = new BMap.Map(document.getElementById('map'));    // 创建Map实例
 
@@ -71,7 +47,7 @@ $(document).ready(function (){
                 map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
 
                 var pt = new BMap.Point(116.417, 39.909);
-                var myIcon = new BMap.Icon("images/start-icon.png", new BMap.Size(300, 157));
+                var myIcon = new BMap.Icon("images/start-icon.png", new BMap.Size(5, 5));
                 var marker2 = new BMap.Marker(pt, {icon: myIcon});  // 创建标注
                 map.addOverlay(marker2);              // 将标注添加到地图中
 
@@ -86,7 +62,7 @@ $(document).ready(function (){
                         type: 'spline'
                     },
                     title: {
-                        text: 'Wind speed during two days'
+                        text: ' '
                     },
                     xAxis: {
                         type: 'datetime'
@@ -135,15 +111,29 @@ $(document).ready(function (){
                             0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                             0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
                             3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4]
-                    }]
-                    ,
-                    navigation: {
-                        menuItemStyle: {
-                            fontSize: '10px'
+                    }],
+                    labels: {                  //图表标签
+                        exporting: {
+                            enabled: false  //设置导出按钮不可用
                         }
-                    }
+                    },
+                    exporting: { enabled: false }
+
                 });
             }
+        }
+    });
+
+    var finData= JSON.stringify();
+    $.ajax({
+        type: "GET",
+        url: "https://maps.googleapis.com/maps/api/elevation/json",
+        contentType: "text/plain; charset=UTF-8",
+        data:
+            "path=36.578581,-118.291994&samples=3"
+        ,
+        success: function (response, status, hrx) {
+            alert(response);
         }
     });
 

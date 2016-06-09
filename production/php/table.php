@@ -90,4 +90,20 @@ else if($method == "queryusertaskcomplforcal")
         }
     }
 }
+else if($method == "queryusernameNloc")
+{
+    $email = $_SESSION["email"];
+    $result = MySqlQuery::select_user_name_loc($email);
+
+    $i = 0;
+    while($row = mysqli_fetch_assoc($result)){
+        $i++;
+        if($i == mysqli_num_rows($result)){
+            echo json_encode($row);
+        }
+        else {
+            echo json_encode($row).",";
+        }
+    }
+}
 ?>

@@ -16,4 +16,20 @@ $(document).ready(function(){
             }
         }
     });
+
+    $.ajax({
+        type : "POST",
+        url  : "php/table.php",
+        data :{
+            method : "queryusernameNloc"
+        },
+        success: function(response,status,hrx){
+            if(response){
+                var resJson = eval("([" + response + "])");
+                $(".right_col .row .profile_left h3").text(resJson[0].nick);
+                $(".right_col .row .list-unstyled i").text(resJson[0].address);
+            }
+        }
+    });
+    $(".right_col .row h3").text();
 });

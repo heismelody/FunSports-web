@@ -31,6 +31,17 @@ class MySqlQuery{
         return $result;
     }
 
+    public static function select_user_name_loc($email){
+        $sql = ' SELECT nick,address 
+                 FROM   test.user
+                 WHERE  email='.'"'.$email.'";';
+
+        $dbConn = MySqlConn::GetInstance();
+        $result=$dbConn->query($sql);
+
+        return $result;
+    }
+
     public static function select_user($email){
         $sql = ' SELECT *
                  FROM   test.user
