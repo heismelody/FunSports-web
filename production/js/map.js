@@ -15,12 +15,6 @@ $(document).ready(function () {
 
 
 $(document).ready(function (){
-
-    // Split(['#map', '#echart'], {
-    //     direction: 'vertical',
-    //     sizes: [50, 50]
-    // });
-
     $.ajax({
         type : "POST",
         url  : "php/table.php",
@@ -29,112 +23,154 @@ $(document).ready(function (){
         },
         success: function(response,status,hrx){
             if(response) {
+                var map = new BMap.Map(document.getElementById('map'));
                 var resJson = eval("([" + response + "])");
                 var routePoints = new Array(resJson[0].pointnum);
+                var routeDistanceFromLast = new Array(resJson[0].pointnum-1);
+                var routeRequestStr = "";
 
                 var i = 1;
                 while (resJson[i]) {
                     routePoints[i - 1] = new BMap.Point(resJson[i].lat, resJson[i].lng);
+                    if(i > 1){
+                        routeDistanceFromLast[i-2] = map.getDistance(routePoints[i-1],routePoints[i-2]).toFixed(2);
+                    }
+                    if(i != (resJson[0].pointnum)){
+                        routeRequestStr += resJson[i].lng+","+resJson[i].lat+"|";
+                    }else {
+                        routeRequestStr += resJson[i].lng+","+resJson[i].lat;
+                    }
                     i++;
                 }
-
-                var map = new BMap.Map(document.getElementById('map'));    // 创建Map实例
 
                 var view = map.getViewport(eval(routePoints));
                 var mapZoom = view.zoom;
                 var centerPoint = view.center;
                 map.centerAndZoom(centerPoint, mapZoom);
-                map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
-
-                var pt = new BMap.Point(116.417, 39.909);
-                var myIcon = new BMap.Icon("images/start-icon.png", new BMap.Size(5, 5));
-                var marker2 = new BMap.Marker(pt, {icon: myIcon});  // 创建标注
-                map.addOverlay(marker2);              // 将标注添加到地图中
-
+                map.setCurrentCity("北京");          // 设置地图显示的城市,此项是必须设置的
                 map.enableScrollWheelZoom(true);
+
+                // var pt = new BMap.Point(116.417, 39.909);
+                // var myIcon = new BMap.Icon("images/start-icon.png", new BMap.Size(5, 5));
+                // var marker2 = new BMap.Marker(pt, {icon: myIcon});
+                // map.addOverlay(marker2);
+
                 var polyline = new BMap.Polyline(routePoints, {
                     strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5
                 });
                 map.addOverlay(polyline);
 
-                $('#echart').highcharts({
-                    chart: {
-                        type: 'spline'
-                    },
-                    title: {
-                        text: ' '
-                    },
-                    xAxis: {
-                        type: 'datetime'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Wind speed (m/s)'
-                        },
-                        min: 0,
-                        minorGridLineWidth: 0,
-                        gridLineWidth: 0,
-                        alternateGridColor: null
 
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://maps.googleapis.com/maps/api/elevation/json',
+
+                    // The 'contentType' property sets the 'Content-Type' header.
+                    // The JQuery default for this property is
+                    // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
+                    // a preflight. If you set this value to anything other than
+                    // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
+                    // you will trigger a preflight request.
+                    contentType: 'text/plain',
+
+                    xhrFields: {
+                        // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+                        // This can be used to set the 'withCredentials' property.
+                        // Set the value to 'true' if you'd like to pass cookies to the server.
+                        // If this is enabled, your server must respond with the header
+                        // 'Access-Control-Allow-Credentials: true'.
+                        withCredentials: false
                     },
-                    tooltip: {
-                        valueSuffix: ' m/s',
-                        crosshairs: true,
-                        shared: true
+
+                    headers: {
+                        // Set any custom headers here.
+                        // If you set any non-simple headers, your server must include these
+                        // headers in the 'Access-Control-Allow-Headers' response header.
                     },
-                    plotOptions: {
-                        spline: {
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
+                    data:
+                        "locations="+routeRequestStr
+                    ,
+                    success: function(response, status, hrx) {
+                        var i = 0;
+                        var routeElevation = new Array(resJson[0].pointnum);
+                        var routeEleXY = new Array(resJson[0].pointnum);
+                        var routeDisFromStart = new Array(resJson[0].pointnum);
+
+
+                        while (i < resJson[0].pointnum) {
+                            if(i == 0){
+                                routeDisFromStart[i] = 0;
+                            }else {
+                                routeDisFromStart[i] = parseInt(routeDisFromStart[i-1]) + parseInt(routeDistanceFromLast[i-1]);
+                            }
+                            routeElevation[i] = response.results[i].elevation;
+                            routeEleXY[i] = [routeDisFromStart[i],routeElevation[i]];
+                            i++;
+                        }
+
+                        $('#echart').highcharts({
+                            chart: {
+                                type: 'spline'
+                            },
+                            title: {
+                                text: ' '
+                            },
+                            xAxis: {
+                                title: {
+                                    text: 'Distance (m)'
+                                },
+                                type: 'liner'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Elevation (m)'
+                                },
+                                min: 0,
+                                minorGridLineWidth: 0,
+                                gridLineWidth: 0,
+                            },
+                            tooltip: {
+                                valueSuffix: ' m',
+                                crosshairs: true,
+                                shared: true
+                            },
+                            plotOptions: {
+                                spline: {
+                                    lineWidth: 1,
+                                    states: {
+                                        hover: {
+                                            lineWidth: 1
+                                        }
+                                    },
+                                    marker: {
+                                        enabled: false
+                                    },
+                                    pointStart: 0
                                 }
                             },
-                            marker: {
-                                enabled: false
+                            series: [{
+                                name: 'Elevation',
+                                data: routeEleXY
+                            }],
+                            labels: {                  //图表标签
+                                exporting: {
+                                    enabled: false  //设置导出按钮不可用
+                                }
                             },
-                            pointInterval: 3600000, // one hour
-                            pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
-                        }
-                    },
-                    series: [{
-                        name: 'Hestavollane',
-                        data: [4.3, 5.1, 4.3, 5.2, 5.4, 4.7, 3.5, 4.1, 5.6, 7.4, 6.9, 7.1,
-                            7.9, 7.9, 7.5, 6.7, 7.7, 7.7, 7.4, 7.0, 7.1, 5.8, 5.9, 7.4,
-                            8.2, 8.5, 9.4, 8.1, 10.9, 10.4, 10.9, 12.4, 12.1, 9.5, 7.5,
-                            7.1, 7.5, 8.1, 6.8, 3.4, 2.1, 1.9, 2.8, 2.9, 1.3, 4.4, 4.2,
-                            3.0, 3.0]
+                            exporting: { enabled: false }
 
-                    }, {
-                        name: 'Voll',
-                        data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.3, 0.0,
-                            0.0, 0.4, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                            0.0, 0.6, 1.2, 1.7, 0.7, 2.9, 4.1, 2.6, 3.7, 3.9, 1.7, 2.3,
-                            3.0, 3.3, 4.8, 5.0, 4.8, 5.0, 3.2, 2.0, 0.9, 0.4, 0.3, 0.5, 0.4]
-                    }],
-                    labels: {                  //图表标签
-                        exporting: {
-                            enabled: false  //设置导出按钮不可用
-                        }
+                        });
                     },
-                    exporting: { enabled: false }
-
+                    error: function() {
+                        // Here's where you handle an error response.
+                        // Note that if the error was due to a CORS issue,
+                        // this function will still fire, but there won't be any additional
+                        // information about the error.
+                    }
                 });
             }
         }
     });
 
-    var finData= JSON.stringify();
-    $.ajax({
-        type: "GET",
-        url: "https://maps.googleapis.com/maps/api/elevation/json",
-        contentType: "text/plain; charset=UTF-8",
-        data:
-            "path=36.578581,-118.291994&samples=3"
-        ,
-        success: function (response, status, hrx) {
-            alert(response);
-        }
-    });
 
 });
