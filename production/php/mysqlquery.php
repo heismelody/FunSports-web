@@ -85,11 +85,11 @@ class MySqlQuery{
 
     public static function select_user_route_point($email){
         $sql = 'SELECT route_point.*
-                FROM   test.sports_record,test.user,test.user_record,test.route,test.route_point
-                WHERE  email='.'"'.$email.'"
-                   AND user.user_id = user_record.user_id
-                   AND user_record.record_id = sports_record.record_id
-                   AND route.route_id = sports_record.route_id;';
+                FROM   sports_record,user,user_record,route_point
+                 WHERE  email='.'"'.$email.'"
+                      AND user_record.user_id = user.user_id
+                      AND sports_record.record_id = user_record.record_id 
+                      AND route_point.route_id = sports_record.route_id';
 
         $dbConn = MySqlConn::GetInstance();
         $result=$dbConn->query($sql);

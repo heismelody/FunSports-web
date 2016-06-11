@@ -50,15 +50,22 @@ $(document).ready(function (){
                 map.setCurrentCity("北京");          // 设置地图显示的城市,此项是必须设置的
                 map.enableScrollWheelZoom(true);
 
-                // var pt = new BMap.Point(116.417, 39.909);
-                // var myIcon = new BMap.Icon("images/start-icon.png", new BMap.Size(5, 5));
-                // var marker2 = new BMap.Marker(pt, {icon: myIcon});
-                // map.addOverlay(marker2);
-
                 var polyline = new BMap.Polyline(routePoints, {
                     strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5
                 });
                 map.addOverlay(polyline);
+
+
+                var endpoint = new BMap.Point(resJson[resJson[0].pointnum].lat, resJson[resJson[0].pointnum].lng);
+                var startpoint = new BMap.Point(resJson[1].lat, resJson[1].lng);
+                var point = new BMap.Point(116.417, 39.909);
+                var starticon = new BMap.Icon("/main/production/images/start.png", new BMap.Size(24,24));
+                var endicon = new BMap.Icon("/main/production/images/end.png", new BMap.Size(24,24));
+                var processicon = new BMap.Icon("/main/production/images/process.png", new BMap.Size(24,24));
+                var startmarker = new BMap.Marker(startpoint,{icon:starticon});
+                var endmarker = new BMap.Marker(endpoint,{icon:endicon});
+                map.addOverlay(startmarker);
+                map.addOverlay(endmarker);
 
 
                 $.ajax({
@@ -127,12 +134,13 @@ $(document).ready(function (){
                                 },
                                 min: 0,
                                 minorGridLineWidth: 0,
-                                gridLineWidth: 0,
+                                gridLineWidth: 0
                             },
                             tooltip: {
                                 valueSuffix: ' m',
                                 crosshairs: true,
-                                shared: true
+                                shared: true,
+                                hideDelay:0
                             },
                             plotOptions: {
                                 spline: {
