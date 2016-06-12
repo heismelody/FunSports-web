@@ -42,12 +42,14 @@ insert into test.user_record (user_id,record_id)
 
 
 
+
 insert into test.task (task_name,goal_type,goal_value,start_time,end_time)
 			   values ("running task","day","7","20160607","20160614");
 insert into test.user_task (user_id,task_id)
 			   values ("7132805","1");
 insert into task_completion (task_id,record_time,completion_rate,finish_type)
 			         values (1,"20160609120000","30%","unfinished");
+
 
 
 
@@ -136,3 +138,33 @@ insert into test.user_task (user_id,task_id)
 			   values ("7132803","2");
 insert into task_completion (task_id,record_time,completion_rate,finish_type)
 			         values (2,"20160609120000","10%","unfinished");
+
+
+
+insert into test.route (start_lat,start_lng,end_lat,end_lng,point_count)
+                values (117.163157,34.250965,117.163804,34.251845,9);
+
+insert into sports_record (total_time,start_time,end_time,activity_type,total_length,route_id)
+		   values (1200,'2016-06-03 12:00:00','2016-06-03 12:20:00',1,0,3);
+
+insert into route_point (route_id,lat,lng)
+				 values (3,117.154803,34.241797);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.157426,34.243095);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.159259,34.244736);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.161379,34.246571);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.162133,34.248481);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.161522,34.25057);
+ insert into route_point (route_id,lat,lng)
+				 values (3,117.161235,34.251868);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.162573,34.251845);
+insert into route_point (route_id,lat,lng)
+				 values (3,117.163804,34.251845);
+
+insert into test.user_record (user_id,record_id)
+		      values (7132805,3);

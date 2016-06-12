@@ -14,6 +14,68 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+
+    if($("#table-user-route")){
+        $.ajax({
+            type : "POST",
+            url: "php/table.php",
+            data : {
+                'method' : 'queryuserrecord'
+            },
+            success: function(response,status,hrx){
+                var resJson = eval("([" + response + "])");
+
+                var i = 0;
+                while(resJson[i]){
+                    resJson[i].checkbox = "";
+                    i++;
+                }
+
+                $("#table-user-route").dataTable({
+                    'data' : resJson,
+                    select: true,
+                    "columns": [
+                        //{ "title": "<input type=\"checkbox\" class=\"flat\">",data: 'checkbox'},
+                        { "title": "ID",data: 'record_id'},
+                        { "title": "Email",data: 'email'},
+                        { "title": "total time" ,data: 'total_time' },
+                        { "title": "start time", data: 'start_time'},
+                        { "title": "end time", data: 'end_time' },
+                        { "title": "activity type" ,data: 'activity_type'},
+                        { "title": "total length",data: 'total_length'}
+                    ],
+                    "createdRow": function ( row, data, index ) {
+                        //行渲染回调,在这里可以对该行dom元素进行任何操作
+                        //给当前行加样式
+                        if (data.role) {
+                            // $(row).addClass("active");
+                        }
+                        //给当列加样式
+                        //var table_checkbox = $('<input type="checkbox" class="flat">');
+
+                        //$('td', row).eq(0).append(table_checkbox);
+                    }
+                })
+            }
+        });
+        $('#table-user-route tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                //$(this).removeClass('selected');
+                alert("A");
+            }
+            else {
+                //table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                alert("A");
+            }
+        } );
+
+    }
+
+
+});
+
 $(document).ready(function (){
     $.ajax({
         type : "POST",

@@ -53,8 +53,6 @@ FOREIGN KEY 	(route_id)		references	route(route_id)
 CREATE TABLE user_record(
 user_id			int				NOT NULL,
 record_id		int				NOT NULL,
-PRIMARY KEY 	(user_id),
-FOREIGN KEY 	(record_id)		references	sports_record(record_id)
 );
 
 CREATE TABLE task(

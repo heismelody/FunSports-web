@@ -54,7 +54,8 @@ class MySqlQuery{
     }
 
     public static function select_user_record($email){
-        $sql = ' SELECT email,sports_record.total_time,
+        $sql = ' SELECT email,sports_record.record_id,
+                              sports_record.total_time,
                               sports_record.start_time,
                               sports_record.end_time,
                               sports_record.activity_type,
